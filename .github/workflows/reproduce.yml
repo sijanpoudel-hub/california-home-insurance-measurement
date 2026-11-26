@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
       - uses: r-lib/actions/setup-r@v2
@@ -44,7 +44,7 @@ jobs:
           }
       - name: Save aggregate tables and verification records
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: research-verification
           retention-days: 30
