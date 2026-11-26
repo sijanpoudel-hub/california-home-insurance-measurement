@@ -26,7 +26,7 @@ jobs:
       - name: Parse saved R scripts
         run: Rscript --vanilla -e 'paths <- list.files(".", pattern = "[.]R$", recursive = TRUE, full.names = TRUE); invisible(lapply(paths, parse, encoding = "UTF-8")); cat("Parsed", length(paths), "R files\n")'
       - name: Install analytical dependencies
-        run: Rscript --vanilla -e 'install.packages(c("readxl", "dplyr"))'
+        run: Rscript --vanilla -e 'install.packages(c("readxl", "dplyr"), repos = Sys.getenv("RSPM", unset = "https://cloud.r-project.org"))'
       - name: Download official public inputs
         run: Rscript --vanilla tools/download_public_inputs.R
       - name: Run the full analysis and reported-result checks
