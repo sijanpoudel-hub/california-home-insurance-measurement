@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite this working research code archive and cite the original data agencies separately. This archive is not yet a verified reproducibility release."
+type: software
+title: "California home insurance measurement: coverage and definition sensitivity"
+authors:
+  - family-names: Poudel
+    given-names: Sijan
+    affiliation: Georgia State University
+repository-code: "https://github.com/sijanpoudel-hub/california-home-insurance-measurement"
+url: "https://github.com/sijanpoudel-hub/california-home-insurance-measurement"
+keywords:
+  - homeowners insurance
+  - California
+  - geographic coverage
+  - nonrenewals
+  - cancellations

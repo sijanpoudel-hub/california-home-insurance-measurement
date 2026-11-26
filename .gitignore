@@ -1,0 +1,19 @@
+# Local R session and machine-specific configuration
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+.Renviron
+.DS_Store
+Thumbs.db
+
+# Local input and generated data; retain source documentation
+data_raw/*
+!data_raw/README.md
+data_clean/
+outputs/
+
+# Downloaded source workbooks outside the data directory
+*.xlsx
+*.xls
+*.zip
