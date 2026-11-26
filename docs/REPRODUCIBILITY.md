@@ -1,64 +1,59 @@
 # Reproduction status
 
-## What has been checked
+## Uploaded scripts and review
 
-The author supplied printed results from local R runs. Those outputs supported arithmetic checks of coverage, descriptive shares, hotspot omission, definition agreement and Census-label sensitivity.
+All seven original scripts were uploaded by the author. The restored `step-10.R` contains the original pooling and definition-agreement code; no reconstruction was substituted.
 
-The original California workbook entries for ZIP 93016 were checked by the author against the imported counts. Matching source entries establish faithful extraction; they do not independently validate the reporting origin or insured-property geography.
+The review found hard-coded Windows project paths. These were replaced with shared configuration in `R/config.R`. The original formulas, eligibility thresholds, grouping rules and cutoff-tie handling were preserved. A failed independent statewide reconciliation now stops execution rather than allowing later steps to continue.
 
-## What remains
+The original files were uploaded to the repository root, so the execution order is:
 
-1. Add the saved scripts listed below.
-2. Restore the empty Step 10 script with the actual analysis code.
-3. Review scripts for explicit dependencies, portable file paths and consistent output names.
-4. Record exact input filenames, download dates where known, byte sizes and file hashes.
-5. Record R and package versions.
-6. Run the entire analysis in a fresh R session using the frozen inputs.
-7. Compare regenerated tables with the manuscript and retain the verification record.
-8. Only then designate a versioned reproducibility release.
+1. `data cleaning and total calculation.R`
+2. `step-6 formula.R`
+3. `treasery step 7.R`
+4. `step 8.R`
+5. `step-9.R`
+6. `step-10.R`
+7. `11_submission_audit.R`
+8. `R/verify_outputs.R`
 
-No successful full-repository run is currently claimed.
+`run_all.R` parses required files before execution, evaluates each step in a separate environment, and records status. Use a fresh R process for the strongest reproducibility check.
 
-## Expected original scripts
+## What the checks establish
 
-The following filenames come from the author's local inventory supplied on November 26, 2026. The sequence is provisional until the contents and dependencies are reviewed.
+The verification script compares regenerated results with 44 reported pilot quantities or groups of quantities: annual counts, denominator availability, federal coverage, hotspot selections, pooled samples, definition agreement and geographic sensitivity.
 
-| Order | Relative path | Intended role | Inventory status |
-|---|---|---|---|
-| 1 | `R/data cleaning and total calculation.R` | Import, cleaning and reconciliation | Reported nonempty; contents not yet reviewed here |
-| 2 | `R/step-6 formula.R` | California descriptive shares | Reported nonempty; contents not yet reviewed here |
-| 3 | `R/treasery step 7.R` | Federal import and ZIP-year matching | Reported nonempty; contents not yet reviewed here |
-| 4 | `R/step 8.R` | Coverage, selection and definition pilot tables | Reported nonempty; contents not yet reviewed here |
-| 5 | `R/step-9.R` | Annual hotspots and county comparisons | Reported nonempty; contents not yet reviewed here |
-| 6 | `R/step-10.R` | Pooling and definition-agreement checks | Reported empty: 0 bytes |
-| 7 | `R/11_submission_audit.R` | Original local geography and script audit | Reported nonempty; portable counterpart supplied in tools |
+These are regression checks against previously reported results. Passing them does not independently establish the accuracy of every source record, the equivalence of California and federal populations, or a causal interpretation.
 
-Preserve the actual saved analysis code before reorganizing filenames. Existing objects in an interactive R session do not demonstrate that the saved scripts can recreate them.
+The 16 statewide count comparisons in Step 5 use the separately published official CDI county report. ZIP 93016 is checked against its original workbook entries, which tests extraction rather than reporting origin or property location.
 
-## Portable geography audit
+## Current verification status
 
-`tools/geography_audit.R` is adapted from the audit that produced the supplied geography tables. Its project root defaults to the current working directory, with an optional `CA_INSURANCE_PROJECT_ROOT` override.
+A successful fresh run has not yet been recorded in this document. The automated workflow attempts the full pipeline using public agency downloads. Its run and artifacts, when available, provide the actual result.
 
-Required derived input:
+A failed download is different from a failed analytical check. Do not mark the pipeline verified if either prevents completion.
 
-`data_clean/california_federal_matched_2018_2021.rds`
+## Inputs and software
 
-Required fields include the counts, ZIP, year, county and nonmissing logical federal visibility/usable flags. The script checks keys and count arithmetic, downloads the official Census Gazetteer if absent, repeats the geography sensitivities and records an inventory. It expects the reviewed pilot's omitted set of 24 ZIP-years and 13 ZIP labels; a changed set stops the script for investigation.
+The public download helper validates file readability and preserves valid existing inputs. Existing acquisition dates are not inferred. Exact observed byte sizes and MD5 hashes are written to `outputs/input_manifest.csv` after a successful run. These hashes identify file contents; they are not a claim of cryptographic authentication.
 
-The county reference is a manually transcribed public lookup for those 13 labels. It is not a historical USPS delivery-type or insured-property crosswalk.
+Software versions are captured in `outputs/full_run_session_info.txt`. Dependency versions were not retroactively assigned to the author's earlier interactive runs.
 
-Expected outputs include:
+## Geographic audit
 
-- `submission_geography_summary.csv`
-- `submission_omitted_zip_audit.csv`
-- `submission_geography_hotspot_sensitivity.csv`
-- `submission_geography_definition_sensitivity.csv`
-- `submission_geography_reference_manifest.csv`
-- `submission_session_info.txt`
-- `submission_script_inventory.csv`
+The audit checks the 13 omitted hotspot ZIP labels against a manually transcribed public county reference and checks all study ZIP labels against the fixed 2020 Census Gazetteer. It does not verify historical USPS delivery types or insured-property coordinates.
 
-These output names specify the script's behavior. They do not imply that a complete public-repository run has been performed.
+The reviewed pilot has 24 omitted hotspot ZIP-years across 13 ZIP labels. A changed omitted set stops the audit for investigation. Original results remain primary; the ZCTA restriction is a separately reranked sensitivity.
 
-## Release record
+The compatibility entry point `tools/geography_audit.R` sources the maintained `11_submission_audit.R`.
 
-Before a release, record the Git commit, input fingerprints, session information and table-comparison results together. Do not infer software versions or download dates from a later run.
+## Verification outputs
+
+- `pipeline_status.csv`: the status of every required step.
+- `reproducibility_checks.csv`: observed and expected quantities, tolerances and outcomes.
+- `input_manifest.csv`: exact inputs used by a successful run.
+- `input_acquisition_log.csv`: download-helper observations when that helper is used.
+- `full_run_session_info.txt`: actual software information.
+- `submission_script_inventory.csv`: saved-script fingerprints.
+
+Keep the run's Git commit and these files together. Before journal submission, reconcile final manuscript tables against the recorded run and inspect the final document layout.

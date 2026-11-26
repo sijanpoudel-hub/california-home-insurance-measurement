@@ -19,9 +19,9 @@ The author used these local filenames:
 
 The California sheet is `New Renew NonRenew`. The Treasury data sheet is `Supporting Underlying Metrics`; retain `Metric Definitions` and `Disclaimer & Background`.
 
-The original scripts' input paths still need to be reviewed. Merely placing workbooks in this folder does not yet establish that the full analysis will run.
+The scripts now use R/config.R to resolve inputs in this folder or the repository root. Optional explicit workbook environment variables select an existing file. Different root and data_raw copies cause a stop unless an override selects one.
 
-The portable geography audit caches `2020_Gaz_zcta_national.zip` in this folder and writes its size and MD5 fingerprint to the output manifest.
+The geography audit caches `2020_Gaz_zcta_national.zip` in this folder and writes its size and MD5 fingerprint to the output manifest.
 
 ## Definition references
 
@@ -32,4 +32,4 @@ The portable geography audit caches `2020_Gaz_zcta_national.zip` in this folder 
 
 ## Input manifest still required
 
-For each frozen input, record its exact filename, agency, source URL, vintage, known acquisition date, byte size and file hash. Actual workbook fingerprints have not yet been supplied to this archive; none are inferred here. Cite and observe the source agencies' terms separately from the research code.
+For each frozen input, record its exact filename, agency, source URL, vintage, known acquisition date, byte size and file hash. The full-run script records actual fingerprints in outputs/input_manifest.csv after success. No fingerprint or acquisition date is inferred for an earlier run. Cite and observe the source agencies' terms separately from the research code.

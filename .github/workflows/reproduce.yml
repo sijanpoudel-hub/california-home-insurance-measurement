@@ -1,0 +1,72 @@
+name: Reproduce reported research results
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.R"
+      - ".github/workflows/reproduce.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.4.2"
+          use-public-rspm: true
+      - name: Parse saved R scripts
+        run: Rscript --vanilla -e 'paths <- list.files(".", pattern = "[.]R$", recursive = TRUE, full.names = TRUE); invisible(lapply(paths, parse, encoding = "UTF-8")); cat("Parsed", length(paths), "R files\n")'
+      - name: Install analytical dependencies
+        run: Rscript --vanilla -e 'install.packages(c("readxl", "dplyr"))'
+      - name: Download official public inputs
+        run: Rscript --vanilla tools/download_public_inputs.R
+      - name: Run the full analysis and reported-result checks
+        run: Rscript --vanilla run_all.R
+      - name: Print verification and input fingerprints
+        if: always()
+        shell: Rscript {0}
+        run: |
+          for (f in c("outputs/reproducibility_checks.csv", "outputs/input_manifest.csv", "outputs/pipeline_status.csv")) {
+            if (file.exists(f)) {
+              cat("\nREPORT:", f, "\n")
+              cat(readLines(f, warn = FALSE), sep = "\n")
+              cat("\n")
+            }
+          }
+      - name: Save aggregate tables and verification records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-verification
+          retention-days: 30
+          if-no-files-found: warn
+          path: |
+            outputs/pipeline_status.csv
+            outputs/reproducibility_checks.csv
+            outputs/input_manifest.csv
+            outputs/input_acquisition_log.csv
+            outputs/full_run_session_info.txt
+            outputs/california_step5_reconciliation.csv
+            outputs/california_state_measures_2018_2021.csv
+            outputs/california_denominator_summary_2018_2021.csv
+            outputs/step8_table*.csv
+            outputs/step9_main_hotspot_omission.csv
+            outputs/step9_hotspot_sensitivity.csv
+            outputs/step9_nonmetro_metro_gaps.csv
+            outputs/step10_pooled_statewide.csv
+            outputs/step10_pooled_sample_counts.csv
+            outputs/step10_pooled_hotspot_summary.csv
+            outputs/step10_definition_hotspot_comparison.csv
+            outputs/submission_omitted_zip_audit.csv
+            outputs/submission_geography_*sensitivity.csv
+            outputs/submission_geography_reference_manifest.csv
+            outputs/submission_script_inventory.csv

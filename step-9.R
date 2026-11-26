@@ -1,3 +1,10 @@
+# Repository locations; run from this repository or set CA_INSURANCE_PROJECT_ROOT.
+source(
+  file.path(Sys.getenv("CA_INSURANCE_PROJECT_ROOT", unset = getwd()),
+            "R", "config.R"),
+  local = TRUE, encoding = "UTF-8"
+)
+
 # ============================================================
 # STEP 9: HOTSPOT OMISSIONS AND COUNTY CONTEXT
 #
@@ -36,10 +43,7 @@ for (pkg in packages) {
 library(dplyr)
 library(readxl)
 
-project_path <- paste0(
-  "C:/Users/poude/OneDrive/Desktop/my research/",
-  "california homeowners insurance issue"
-)
+project_path <- ca_project_root
 
 clean_folder <- file.path(project_path, "data_clean")
 output_folder <- file.path(project_path, "outputs")
@@ -1119,10 +1123,7 @@ print(
 
 # Check ZIP 93016 directly in the original California workbook.
 
-source_workbook_path <- file.path(
-  project_path,
-  "California ZIP data for 2015–2021.xlsx"
-)
+source_workbook_path <- ca_california_path
 
 source_check <- readxl::read_excel(
   path = source_workbook_path,

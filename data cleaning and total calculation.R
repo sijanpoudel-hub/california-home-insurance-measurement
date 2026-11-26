@@ -1,3 +1,10 @@
+# Repository locations; run from this repository or set CA_INSURANCE_PROJECT_ROOT.
+source(
+  file.path(Sys.getenv("CA_INSURANCE_PROJECT_ROOT", unset = getwd()),
+            "R", "config.R"),
+  local = TRUE, encoding = "UTF-8"
+)
+
 
 
 # Install readxl only if it is not already installed
@@ -12,17 +19,9 @@ library(readxl)
 # Use forward slashes in R, even on Windows.
 # ------------------------------------------------------------
 
-california_path <- paste0(
-  "C:/Users/poude/OneDrive/Desktop/my research/",
-  "california homeowners insurance issue/",
-  "California ZIP data for 2015–2021.xlsx"
-)
+california_path <- ca_california_path
 
-treasury_path <- paste0(
-  "C:/Users/poude/OneDrive/Desktop/my research/",
-  "california homeowners insurance issue/",
-  "Treasury homeowners insurance metrics for 2018–2022.xlsx"
-)
+treasury_path <- ca_treasury_path
 
 # ------------------------------------------------------------
 # 2. Check whether R can find the files
@@ -140,15 +139,9 @@ library(dplyr)
 # 2. Define file locations and output folders
 # ------------------------------------------------------------
 
-project_path <- paste0(
-  "C:/Users/poude/OneDrive/Desktop/my research/",
-  "california homeowners insurance issue"
-)
+project_path <- ca_project_root
 
-california_path <- file.path(
-  project_path,
-  "California ZIP data for 2015–2021.xlsx"
-)
+california_path <- ca_california_path
 
 clean_folder <- file.path(project_path, "data_clean")
 output_folder <- file.path(project_path, "outputs")
@@ -724,10 +717,7 @@ library(dplyr)
 # 1. File locations
 # ------------------------------------------------------------
 
-project_path <- paste0(
-  "C:/Users/poude/OneDrive/Desktop/my research/",
-  "california homeowners insurance issue"
-)
+project_path <- ca_project_root
 
 output_folder <- file.path(project_path, "outputs")
 clean_folder <- file.path(project_path, "data_clean")
@@ -1055,4 +1045,8 @@ if (!all_matched) {
     "\nRetain the documented county and definition limitations.",
     "\nUpdate the Step 6 measure definitions before calculating rates.\n"
   )
+}
+
+if (!all_matched) {
+  stop("Official statewide reconciliation failed; later steps were not run.")
 }

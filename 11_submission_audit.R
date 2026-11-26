@@ -1,3 +1,10 @@
+# Repository locations; run from this repository or set CA_INSURANCE_PROJECT_ROOT.
+source(
+  file.path(Sys.getenv("CA_INSURANCE_PROJECT_ROOT", unset = getwd()),
+            "R", "config.R"),
+  local = TRUE, encoding = "UTF-8"
+)
+
 # ============================================================
 # SUBMISSION AUDIT: GEOGRAPHY AND CODE INVENTORY
 # Save as: 11_submission_audit.R
@@ -12,10 +19,7 @@ if (!requireNamespace("dplyr", quietly = TRUE)) {
 }
 library(dplyr)
 
-project_path <- paste0(
-  "C:/Users/poude/OneDrive/Desktop/my research/",
-  "california homeowners insurance issue"
-)
+project_path <- ca_project_root
 raw_folder <- file.path(project_path, "data_raw")
 output_folder <- file.path(project_path, "outputs")
 dir.create(raw_folder, recursive = TRUE, showWarnings = FALSE)
@@ -321,4 +325,4 @@ cat("\nSAVED SCRIPT INVENTORY\n")
 print(script_inventory, row.names = FALSE)
 cat("\nAudit outputs saved. Original analysis files were not overwritten.\n")
 cat("Census membership does not certify postal validity or property location.\n")
-cat("The code archive has not been published.\n")
+cat("The full-run verification status is recorded separately.\n")

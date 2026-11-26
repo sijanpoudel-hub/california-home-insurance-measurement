@@ -1,3 +1,10 @@
+# Repository locations; run from this repository or set CA_INSURANCE_PROJECT_ROOT.
+source(
+  file.path(Sys.getenv("CA_INSURANCE_PROJECT_ROOT", unset = getwd()),
+            "R", "config.R"),
+  local = TRUE, encoding = "UTF-8"
+)
+
 # ============================================================
 # STEP 8: PRODUCE THE FIRST THREE RESULTS — CORRECTED VERSION
 #
@@ -30,10 +37,7 @@ library(dplyr)
 # 2. Define file locations
 # ------------------------------------------------------------
 
-project_path <- paste0(
-  "C:/Users/poude/OneDrive/Desktop/my research/",
-  "california homeowners insurance issue"
-)
+project_path <- ca_project_root
 
 clean_folder <- file.path(project_path, "data_clean")
 output_folder <- file.path(project_path, "outputs")

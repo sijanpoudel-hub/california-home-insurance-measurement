@@ -1,3 +1,10 @@
+# Repository locations; run from this repository or set CA_INSURANCE_PROJECT_ROOT.
+source(
+  file.path(Sys.getenv("CA_INSURANCE_PROJECT_ROOT", unset = getwd()),
+            "R", "config.R"),
+  local = TRUE, encoding = "UTF-8"
+)
+
 # ============================================================
 # STEP 7A: INSPECT THE TREASURY DATA AND DEFINITIONS
 # ============================================================
@@ -13,15 +20,9 @@ library(readxl)
 # 1. Treasury workbook location
 # ------------------------------------------------------------
 
-project_path <- paste0(
-  "C:/Users/poude/OneDrive/Desktop/my research/",
-  "california homeowners insurance issue"
-)
+project_path <- ca_project_root
 
-treasury_path <- file.path(
-  project_path,
-  "Treasury homeowners insurance metrics for 2018–2022.xlsx"
-)
+treasury_path <- ca_treasury_path
 
 if (!file.exists(treasury_path)) {
   stop("Treasury workbook not found. Check the file path.")
@@ -122,18 +123,12 @@ library(dplyr)
 # 2. Define file locations
 # ------------------------------------------------------------
 
-project_path <- paste0(
-  "C:/Users/poude/OneDrive/Desktop/my research/",
-  "california homeowners insurance issue"
-)
+project_path <- ca_project_root
 
 clean_folder <- file.path(project_path, "data_clean")
 output_folder <- file.path(project_path, "outputs")
 
-treasury_path <- file.path(
-  project_path,
-  "Treasury homeowners insurance metrics for 2018–2022.xlsx"
-)
+treasury_path <- ca_treasury_path
 
 california_path <- file.path(
   clean_folder,
