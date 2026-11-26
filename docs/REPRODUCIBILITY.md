@@ -29,7 +29,7 @@ The 16 statewide count comparisons in Step 5 use the separately published offici
 
 ## Current verification status
 
-A successful fresh run has not yet been recorded in this document. The automated workflow attempts the full pipeline using public agency downloads. Its run and artifacts, when available, provide the actual result.
+The [fresh run on November 26, 2026](https://github.com/sijanpoudel-hub/california-home-insurance-measurement/actions/runs/45883659220) completed successfully at code commit 55c69ad6363a904c059d7bed9894f97f826b3bda. All analytical steps and 44 reported-result checks passed using newly downloaded official inputs. Permanent CSV reports and the exact input fingerprints are retained in [validation](../validation/README.md). Full session information and aggregate tables are included in the linked workflow artifact.
 
 A failed download is different from a failed analytical check. Do not mark the pipeline verified if either prevents completion.
 

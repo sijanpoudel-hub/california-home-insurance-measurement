@@ -10,7 +10,7 @@ The study examines how geographic availability and event definitions change desc
 
 All seven original analysis scripts are now present, including the author's restored Step 10 script. The scripts have been reviewed and adapted to portable project locations. The original analytical formulas, sample rules and cutoff-tie handling are preserved.
 
-The full pipeline includes 44 regression checks against the author's supplied pilot tables. **A successful fresh run is not yet claimed.** See [reproduction status](docs/REPRODUCIBILITY.md) and the repository's Actions tab for verification results.
+**The full pipeline passed all 44 regression checks in a fresh R session on November 26, 2026.** The public agency inputs were downloaded anew. See the [permanent verification record](validation/README.md), [successful run](https://github.com/sijanpoudel-hub/california-home-insurance-measurement/actions/runs/45883659220) and [reproduction notes](docs/REPRODUCIBILITY.md).
 
 ## Run the analysis
 
