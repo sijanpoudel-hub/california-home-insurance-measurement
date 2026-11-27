@@ -1,0 +1,16 @@
+{
+  "url": "https://www.insurance.ca.gov/01-consumers/200-wrr/upload/Residential-Insurance-Voluntary-Market-New-Renew-NonRenew-by-ZIP-2020-2023.xlsx",
+  "filename": "California_ZIP_2020_2023.xlsx",
+  "bytes": 296977,
+  "sha256": "316d0ee62f110f9f7f762f052c4e9bb09fb05cd6d9074a796b740247a8f0636d",
+  "sheet": "New Renew Nonrenew",
+  "headers": [
+    "county",
+    "zipcode",
+    "year",
+    "new",
+    "renewed",
+    "nonrenewed"
+  ],
+  "interpretation": "Compare combined categories only; later release does not identify I and U separately. Differences can reflect revised reporting, DIC separation, flat-cancellation changes, and geography. Do not splice releases or allocate later combined counts into insurer/policyholder categories."
+}

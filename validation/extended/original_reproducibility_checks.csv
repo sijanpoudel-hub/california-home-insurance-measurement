@@ -1,0 +1,45 @@
+"check","passed","actual","expected","tolerance"
+"State years",TRUE,"2018; 2019; 2020; 2021","2018; 2019; 2020; 2021",0
+"Annual ZIP-year counts",TRUE,"2120; 2103; 2154; 2126","2120; 2103; 2154; 2126",0
+"Renewed counts",TRUE,"7546700; 7540135; 7631979; 7621326","7546700; 7540135; 7631979; 7621326",0
+"Insurer-initiated counts",TRUE,"165008; 234843; 186440; 241662","165008; 234843; 186440; 241662",0
+"Policyholder-initiated counts",TRUE,"749179; 787795; 805787; 876760","749179; 787795; 805787; 876760",0
+"Annual constructed T",TRUE,"8460887; 8562773; 8624206; 8739748","8460887; 8562773; 8624206; 8739748",0
+"Independent statewide reference matches",TRUE,"16","16",0
+"Zero T records",TRUE,"63; 93; 48; 48","63; 93; 48; 48",0
+"Missing county records",TRUE,"70; 54; 92; 86","70; 54; 92; 86",0
+"Visible ZIP-year counts",TRUE,"1558; 1554; 1553; 1553","1558; 1554; 1553; 1553",0
+"Unavailable ZIP-year counts",TRUE,"562; 549; 601; 573","562; 549; 601; 573",0
+"Visible T",TRUE,"8449131; 8549420; 8609766; 8725335","8449131; 8549420; 8609766; 8725335",0
+"Unavailable T",TRUE,"11756; 13353; 14440; 14413","11756; 13353; 14440; 14413",0
+"Coverage record percentages sum to 100",TRUE,"100; 100; 100; 100","100; 100; 100; 100",1e-08
+"Coverage T percentages sum to 100",TRUE,"100; 100; 100; 100","100; 100; 100; 100",1e-08
+"Main eligible counts",TRUE,"1562; 1563; 1566; 1567","1562; 1563; 1566; 1567",0
+"Main hotspot counts",TRUE,"157; 157; 157; 157","157; 157; 157; 157",0
+"Main omitted hotspot counts",TRUE,"8; 4; 6; 6","8; 4; 6; 6",0
+"Main hotspot T",TRUE,"170386; 298112; 315997; 342717","170386; 298112; 315997; 342717",0
+"Main omitted hotspot T",TRUE,"995; 465; 747; 765","995; 465; 747; 765",0
+"Planned sensitivity grid has 36 rows",TRUE,"36","36",0
+"T >= 200 top-decile omissions",TRUE,"0; 0; 0; 0","0; 0; 0; 0",0
+"Pooled sample counts",TRUE,"2323; 1968; 1554","2323; 1968; 1554",0
+"Pooled eligible ZIPs",TRUE,"1554","1554",0
+"Pooled hotspots",TRUE,"156","156",0
+"Pooled incomplete federal histories",TRUE,"4","4",0
+"Pooled hotspot T",TRUE,"1232567","1232567",0
+"Pooled incomplete-history hotspot T",TRUE,"1935","1935",0
+"Insurer definition hotspot counts",TRUE,"157; 157; 157; 157","157; 157; 157; 157",0
+"Combined definition hotspot counts",TRUE,"157; 157; 157; 157","157; 157; 157; 157",0
+"Definition shared hotspots",TRUE,"62; 123; 116; 103","62; 123; 116; 103",0
+"Definition union hotspots",TRUE,"252; 191; 198; 211","252; 191; 198; 211",0
+"Definition Spearman correlations",TRUE,"0.583848998710; 0.789369202948; 0.734133816535; 0.721778881058","0.583849; 0.789369; 0.734134; 0.721779",1e-06
+"Distinct omitted ZIP labels",TRUE,"13","13",0
+"County-reference agreement",TRUE,"13","13",0
+"Omitted ZIP labels with ZCTA match",TRUE,"10","10",0
+"Nonmatching ZIP labels",TRUE,"93016; 93447; 95656","93016; 93447; 95656",0
+"Mapped eligible counts",TRUE,"1554; 1554; 1554; 1558","1554; 1554; 1554; 1558",0
+"Mapped hotspot counts",TRUE,"156; 156; 156; 156","156; 156; 156; 156",0
+"Mapped omitted hotspot counts",TRUE,"8; 4; 3; 6","8; 4; 3; 6",0
+"Mapped hotspot T",TRUE,"170252; 297924; 321583; 346591","170252; 297924; 321583; 346591",0
+"Mapped omitted hotspot T",TRUE,"995; 465; 363; 765","995; 465; 363; 765",0
+"Mapped definition shared hotspots",TRUE,"61; 122; 114; 101","61; 122; 114; 101",0
+"Mapped definition union hotspots",TRUE,"251; 190; 198; 211","251; 190; 198; 211",0
