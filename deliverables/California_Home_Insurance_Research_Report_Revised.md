@@ -58,19 +58,19 @@ Table 1. Federal availability
 
 | Year | State records | Visible records | Visible records % | Visible T % |
 | --- | --- | --- | --- | --- |
-| 2,018 | 2,120 | 1,558 | 73.491 | 99.861 |
-| 2,019 | 2,103 | 1,554 | 73.894 | 99.844 |
-| 2,020 | 2,154 | 1,553 | 72.098 | 99.833 |
-| 2,021 | 2,126 | 1,553 | 73.048 | 99.835 |
+| 2018 | 2,120 | 1,558 | 73.491 | 99.861 |
+| 2019 | 2,103 | 1,554 | 73.894 | 99.844 |
+| 2020 | 2,154 | 1,553 | 72.098 | 99.833 |
+| 2021 | 2,126 | 1,553 | 73.048 | 99.835 |
 
 Table 2. Geographic restriction, primary normalizer
 
 | Year | All % | Visible % | Difference, pp |
 | --- | --- | --- | --- |
-| 2,018 | 1.950 | 1.949 | -0.001606 |
-| 2,019 | 2.743 | 2.738 | -0.005062 |
-| 2,020 | 2.162 | 2.157 | -0.004516 |
-| 2,021 | 2.765 | 2.763 | -0.001644 |
+| 2018 | 1.950245 | 1.948638 | -0.001606 |
+| 2019 | 2.742605 | 2.737542 | -0.005062 |
+| 2020 | 2.161822 | 2.157306 | -0.004516 |
+| 2021 | 2.765091 | 2.763447 | -0.001644 |
 
 The visible subset covers 6,218 of 8,503 records. The missing 2,285 records represent approximately 0.157% of pooled T. Annual statewide differences remain very small, despite some higher descriptive shares among missing observations. Count weight explains the difference between geographic-record absence and aggregate impact.
 
@@ -78,19 +78,19 @@ Table 3. Primary hotspot omission
 
 | Year | Hotspots | Omitted | Omitted % | Hotspot T omitted % |
 | --- | --- | --- | --- | --- |
-| 2,018 | 157 | 8 | 5.096 | 0.584 |
-| 2,019 | 157 | 4 | 2.548 | 0.156 |
-| 2,020 | 157 | 6 | 3.822 | 0.236 |
-| 2,021 | 157 | 6 | 3.822 | 0.223 |
+| 2018 | 157 | 8 | 5.096 | 0.584 |
+| 2019 | 157 | 4 | 2.548 | 0.156 |
+| 2020 | 157 | 6 | 3.822 | 0.236 |
+| 2021 | 157 | 6 | 3.822 | 0.223 |
 
 Table 4. Primary definition agreement
 
 | Year | Insurer hotspots | Shared | Retention % | Jaccard % | Spearman |
 | --- | --- | --- | --- | --- | --- |
-| 2,018 | 157 | 62 | 39.490 | 24.603 | 0.584 |
-| 2,019 | 157 | 123 | 78.344 | 64.398 | 0.789 |
-| 2,020 | 157 | 116 | 73.885 | 58.586 | 0.734 |
-| 2,021 | 157 | 103 | 65.605 | 48.815 | 0.722 |
+| 2018 | 157 | 62 | 39.490 | 24.603 | 0.584 |
+| 2019 | 157 | 123 | 78.344 | 64.398 | 0.789 |
+| 2020 | 157 | 116 | 73.885 | 58.586 | 0.734 |
+| 2021 | 157 | 103 | 65.605 | 48.815 | 0.722 |
 
 The original pooled stable-cohort analysis retains 1,554 ZIPs meeting T≥100 in each of four years. Its 156 pooled hotspots include four with an incomplete federal history, representing 0.156989% of pooled hotspot T. This differs from annual omission because eligibility and the missing-history definition change. The original metro–nonmetro gap changes by at most 0.015993 percentage points on all positive-T records.
 
@@ -104,23 +104,23 @@ Table 5. Alternative-normalizer definition agreement, T ≥ 100, D > 0, top 10%
 
 | Year | Eligible | Insurer hotspots | Shared | Retention % | Jaccard % |
 | --- | --- | --- | --- | --- | --- |
-| 2,018 | 1,562 | 157 | 62 | 39.490 | 24.603 |
-| 2,019 | 1,563 | 157 | 121 | 77.070 | 62.694 |
-| 2,020 | 1,566 | 157 | 118 | 75.159 | 60.204 |
-| 2,021 | 1,567 | 157 | 107 | 68.153 | 51.691 |
+| 2018 | 1,562 | 157 | 62 | 39.490 | 24.603 |
+| 2019 | 1,563 | 157 | 121 | 77.070 | 62.694 |
+| 2020 | 1,566 | 157 | 118 | 75.159 | 60.204 |
+| 2021 | 1,567 | 157 | 107 | 68.153 | 51.691 |
 
 Table 6. Hotspot retention when only the denominator changes
 
 | Year | Numerator I or C | T-based hotspots | Shared with D | Retention % |
 | --- | --- | --- | --- | --- |
-| 2,018 | I | 157 | 152 | 96.815 |
-| 2,018 | C | 157 | 151 | 96.178 |
-| 2,019 | I | 157 | 151 | 96.178 |
-| 2,019 | C | 157 | 149 | 94.904 |
-| 2,020 | I | 157 | 153 | 97.452 |
-| 2,020 | C | 157 | 143 | 91.083 |
-| 2,021 | I | 157 | 154 | 98.089 |
-| 2,021 | C | 157 | 145 | 92.357 |
+| 2018 | I | 157 | 152 | 96.815 |
+| 2018 | C | 157 | 151 | 96.178 |
+| 2019 | I | 157 | 151 | 96.178 |
+| 2019 | C | 157 | 149 | 94.904 |
+| 2020 | I | 157 | 153 | 97.452 |
+| 2020 | C | 157 | 143 | 91.083 |
+| 2021 | I | 157 | 154 | 98.089 |
+| 2021 | C | 157 | 145 | 92.357 |
 
 With D = new plus renewed policies, insurer-versus-combined retention ranges from 39.49–77.07% under the paired primary local rule. The denominator-only comparison in Table 6 separates this issue from event-definition disagreement. Any sample losses from D=0 are tabulated in the supplement; they must not be counted as low scores.
 
@@ -128,14 +128,14 @@ Table 7. Statewide selection differences under both normalizers
 
 | Year | Normalizer | All % | Visible % | Difference, pp |
 | --- | --- | --- | --- | --- |
-| 2,018 | T | 1.950 | 1.949 | -0.001606 |
-| 2,018 | D | 1.935 | 1.934 | -0.001550 |
-| 2,019 | T | 2.743 | 2.738 | -0.005062 |
-| 2,019 | D | 2.717 | 2.712 | -0.004870 |
-| 2,020 | T | 2.162 | 2.157 | -0.004516 |
-| 2,020 | D | 2.145 | 2.141 | -0.004402 |
-| 2,021 | T | 2.765 | 2.763 | -0.001644 |
-| 2,021 | D | 2.769 | 2.767 | -0.001618 |
+| 2018 | T | 1.950245 | 1.948638 | -0.001606 |
+| 2018 | D | 1.935204 | 1.933653 | -0.001550 |
+| 2019 | T | 2.742605 | 2.737542 | -0.005062 |
+| 2019 | D | 2.716799 | 2.711929 | -0.004870 |
+| 2020 | T | 2.161822 | 2.157306 | -0.004516 |
+| 2020 | D | 2.145412 | 2.141010 | -0.004402 |
+| 2021 | T | 2.765091 | 2.763447 | -0.001644 |
+| 2021 | D | 2.768564 | 2.766946 | -0.001618 |
 
 Across county exclusions, statewide visible-minus-all differences range from -0.005849–-0.001111 percentage points. Definition retention ranges from 37.58–80.00%, and insurer-hotspot omission ranges from 1.95–5.41%. These ranges pool counties and years; year-specific results and the county producing each extreme are provided in the supplement.
 
@@ -143,12 +143,12 @@ Table 8. Overlapping-release count comparisons
 
 | Year | N, R or C | Earlier count | Later count | Later minus earlier | Change % |
 | --- | --- | --- | --- | --- | --- |
-| 2,020 | N | 1,057,402 | 1,007,422 | -49,980 | -4.727 |
-| 2,020 | R | 7,631,979 | 7,572,809 | -59,170 | -0.775 |
-| 2,020 | C | 992,227 | 898,064 | -94,163 | -9.490 |
-| 2,021 | N | 1,107,169 | 1,091,089 | -16,080 | -1.452 |
-| 2,021 | R | 7,621,326 | 7,514,564 | -106,762 | -1.401 |
-| 2,021 | C | 1,118,422 | 1,037,767 | -80,655 | -7.211 |
+| 2020 | N | 1,057,402 | 1,007,422 | -49,980 | -4.727 |
+| 2020 | R | 7,631,979 | 7,572,809 | -59,170 | -0.775 |
+| 2020 | C | 992,227 | 898,064 | -94,163 | -9.490 |
+| 2021 | N | 1,107,169 | 1,091,089 | -16,080 | -1.452 |
+| 2021 | R | 7,621,326 | 7,514,564 | -106,762 | -1.401 |
+| 2021 | C | 1,118,422 | 1,037,767 | -80,655 | -7.211 |
 
 N denotes new policies, R renewed policies, and C the combined termination count. The releases are compared on their published definitions; common-key results are separately provided. CDI's later documentation identifies improved reporting, removal of flat-cancellation inflation, and separation of Difference in Conditions (DIC) policies (CDI, n.d.-c). Cross-release differences therefore require substantive disclosure; they cannot simply be treated as random revisions or allocated between I and U.
 
@@ -176,7 +176,7 @@ The California benchmark quantifies how published federal availability changes e
 
 Code: https://github.com/sijanpoudel-hub/california-home-insurance-measurement . The extension and report generator are preserved on the analysis branch. This revision was generated only after the complete original R pipeline and supplementary checks succeeded. The 44 original regression checks verify reproduction of saved quantities; supplementary checks compare every original study-year count with an independent Python workbook import and reproduce the main selection and hotspot results. This is not independent validation of insurer submissions.
 
-Run record: https://github.com/sijanpoudel-hub/california-home-insurance-measurement/actions/runs/45936786009
+Run record: https://github.com/sijanpoudel-hub/california-home-insurance-measurement/actions/runs/45937181143
 
 Input fingerprints, acquisition records, full numerical outputs, software versions and source references accompany the report. The 2020–2023 workbook has its own SHA-256 manifest. New robustness exercises are labelled exploratory. The reproducible numerical outputs are authoritative if a rounding difference appears in the displayed text.
 
