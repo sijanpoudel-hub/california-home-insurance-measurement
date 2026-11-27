@@ -1,0 +1,16 @@
+{
+  "California_Home_Insurance_Research_Report_Revised": {
+    "pdf_pages": 7,
+    "word_tables": 8,
+    "pdf_characters": 21727,
+    "out_of_page_spans": 0,
+    "key_text_checks": "passed"
+  },
+  "California_Home_Insurance_Robustness_Supplement": {
+    "pdf_pages": 8,
+    "word_tables": 9,
+    "pdf_characters": 11444,
+    "out_of_page_spans": 0,
+    "key_text_checks": "passed"
+  }
+}
