@@ -46,7 +46,7 @@ def p(text):B.append(("p",text))
 def h(text):B.append(("h",text))
 def table(title,df,cols):
     B.append(("table",(title,[label for key,label in cols],
-                      [[fmt(r[key],6 if "pp" in key else 3) for key,label in cols] for _,r in df.iterrows()])))
+                      [[str(int(r[key])) if key=="year" else fmt(r[key],6 if ("pp" in key or key in ["all_insurer_pct","visible_insurer_pct"]) else 3) for key,label in cols] for _,r in df.iterrows()])))
 title="Coverage and Definition Sensitivity in California Home Insurance Measures"
 p("Sijan Poudel | J. Mack Robinson College of Business, Georgia State University, Atlanta, Georgia, USA")
 p("Revised after additional exploratory robustness checks. This version supersedes the earlier numerical interpretation only where expressly discussed below.")
@@ -145,7 +145,7 @@ def render(blocks,stem,title):
     doc.add_heading(title,0)
     styles=getSampleStyleSheet();styles.add(ParagraphStyle("Small",parent=styles["BodyText"],fontSize=7,leading=9));styles["BodyText"].fontSize=9;styles["BodyText"].leading=12
     styles["BodyText"].spaceAfter=7;styles["Title"].fontSize=18
-    styles["Heading2"].fontSize=12;styles["Heading2"].spaceBefore=12
+    styles["Heading2"].fontSize=12;styles["Heading2"].spaceBefore=12;styles["Heading2"].keepWithNext=1
     styles["Small"].fontSize=7;styles["Small"].leading=9
     if font_path.exists():
         for sty in styles.byName.values():sty.fontName="DejaVuSans"
