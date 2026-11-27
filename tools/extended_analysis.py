@@ -52,7 +52,7 @@ d["visible"]=d.federal_usable.astype(str).str.lower().map({"true":True,"false":F
 check("Input records and unique keys",len(d)==8503 and not d.duplicated(["zip","year"]).any())
 check("Count arithmetic and completeness",not d[["N","R","I","U","T"]].isna().any().any()
       and (d[["N","R","I","U","T"]]>=0).all().all()
-      and (d.T if False else d["T"]).equals(d.R+d.I+d.U))
+      and d["T"].equals(d.R+d.I+d.U))
 check("Availability is boolean",not d.visible.isna().any())
 # Independent source extraction from the original workbook, not an R-derived table.
 oldpath=ROOT/"data_raw"/"California ZIP data for 2015–2021.xlsx"
@@ -71,6 +71,20 @@ check("Published annual totals independently reproduced",
       d.groupby("year")[["R","I","U","T"]].sum().to_numpy().tolist()==[
       [7546700,165008,749179,8460887],[7540135,234843,787795,8562773],
       [7631979,186440,805787,8624206],[7621326,241662,876760,8739748]])
+
+# Independently reconstruct federal availability from the original workbook.
+fedpath=ROOT/"data_raw"/"Treasury homeowners insurance metrics for 2018–2022.xlsx"
+fed=pd.read_excel(fedpath,sheet_name="Supporting Underlying Metrics",
+                 usecols=["ZIP Code","Year","Nonrenewal Rate"],dtype={"ZIP Code":str})
+fed=fed.rename(columns={"ZIP Code":"zip","Year":"year","Nonrenewal Rate":"rate"})
+fed["year"]=pd.to_numeric(fed.year,errors="raise")
+fed=fed[fed.year.isin(YEARS)].copy()
+fed.zip=fed.zip.astype(str).str.strip().str.replace(r"\.0$","",regex=True).str.zfill(5)
+fed["finite"]=np.isfinite(pd.to_numeric(fed.rate.astype(str).str.replace("%","",regex=False),errors="coerce"))
+check("Federal source keys independently unique",not fed.duplicated(["zip","year"]).any())
+fv=d[["zip","year","visible"]].merge(fed[["zip","year","finite"]],on=["zip","year"],how="left",validate="one_to_one")
+check("Federal availability independently reproduced for every state record",
+      np.array_equal(fv.visible.to_numpy(),fv.finite.fillna(False).astype(bool).to_numpy()))
 
 # 1. Full definition sensitivity grid; keep the common denominator and same sample.
 grid=[]
@@ -91,7 +105,7 @@ for year in YEARS:
     e["combined_hotspot"]=topmask(e.C/e["T"],.1)
     for row in e[e.insurer_hotspot|e.combined_hotspot].itertuples():
         membership.append({"year":year,"zip":row.zip,"county":row.county,
-        "T":row.T if False else getattr(row,"T"),"I":row.I,"U":row.U,
+        "T":getattr(row,"T"),"I":row.I,"U":row.U,
         "insurer_hotspot":row.insurer_hotspot,"combined_hotspot":row.combined_hotspot})
 save(pd.DataFrame(membership),"definition_membership")
 

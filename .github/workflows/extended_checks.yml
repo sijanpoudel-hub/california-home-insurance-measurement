@@ -51,7 +51,7 @@ jobs:
               paths+=list(Path("outputs").glob("*session_info.txt"))
               paths+=[Path("tools/extended_analysis.py"),Path("tools/build_revised_report.py"),Path("docs/ADDITIONAL_ANALYSIS.md")]
               for p in paths:
-                  if p.name=="extension_matched_input.csv" or p.suffix==".zip" or not p.is_file():
+                  if p.name in {"extension_matched_input.csv","extended_release_zip_differences.csv","extended_definition_membership.csv"} or p.suffix==".zip" or not p.is_file():
                       continue
                   z.write(p,p.as_posix())
           PY
@@ -60,7 +60,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p validation/extended
-          cp outputs/extended_*.csv validation/extended/
+          for file in outputs/extended_*.csv; do
+            case "$(basename "$file")" in
+              extended_release_zip_differences.csv|extended_definition_membership.csv) continue ;;
+            esac
+            cp "$file" validation/extended/
+          done
           cp outputs/extended_*.json validation/extended/
           cp outputs/reproducibility_checks.csv validation/extended/original_reproducibility_checks.csv
           cp outputs/input_manifest.csv validation/extended/original_input_manifest.csv
@@ -77,6 +82,9 @@ jobs:
           path: |
             deliverables/
             outputs/*.csv
+            !outputs/extension_matched_input.csv
+            !outputs/extended_release_zip_differences.csv
+            !outputs/extended_definition_membership.csv
             outputs/*.json
             outputs/*session_info.txt
             tools/extended_analysis.py
