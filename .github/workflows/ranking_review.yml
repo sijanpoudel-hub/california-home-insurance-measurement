@@ -1,0 +1,46 @@
+name: Reproduce ranking stability checks
+on:
+  push:
+    branches: [analysis/ranking-stability-2026-11-27]
+    paths: [review_replication/**, .github/workflows/ranking_review.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  replicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: review_replication
+    steps:
+      - uses: actions/checkout@v6
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true
+      - name: Install R dependencies
+        run: Rscript --vanilla -e 'install.packages(c("readxl", "dplyr"))'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install Python dependencies
+        run: python -m pip install numpy==2.2.6 pandas==2.2.3 openpyxl==3.1.5
+      - name: Download original agency workbooks
+        run: Rscript --vanilla tools/download_public_inputs.R
+      - name: Execute renamed R pipeline and original 44 checks in clean session
+        run: Rscript --vanilla run_all.R
+      - name: Export freshly calculated R matching result
+        run: Rscript --vanilla -e 'write.csv(readRDS("data_clean/california_federal_matched_2018_2021.rds"), "outputs/extension_matched_input.csv", row.names=FALSE, na="")'
+      - name: Reproduce supplementary checks against source workbooks
+        run: python tools/extended_analysis.py
+      - name: Execute temporal comparisons component swaps and resampling
+        run: python tools/ranking_stability.py
+      - name: Preserve numerical outputs and execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ranking-review-replication
+          path: |
+            review_replication/outputs/
+          retention-days: 30
