@@ -1,4 +1,4 @@
-name: Review generated report files
+name: Review final generated report files
 on:
   push:
     branches: ["analysis/remaining-checks-2026-11-27"]
