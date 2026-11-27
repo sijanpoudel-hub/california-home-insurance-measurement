@@ -1,0 +1,56 @@
+name: Review generated report files
+on:
+  push:
+    branches: ["analysis/remaining-checks-2026-11-27"]
+    paths: [".github/workflows/review_report.yml"]
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - run: python -m pip install pymupdf python-docx
+      - name: Check text, tables and page boundaries
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json,fitz
+          from docx import Document
+          root=Path("deliverables");out=Path("validation/document_review");out.mkdir(parents=True,exist_ok=True)
+          report={}
+          for stem in ["California_Home_Insurance_Research_Report_Revised","California_Home_Insurance_Robustness_Supplement"]:
+              pdf=fitz.open(root/(stem+".pdf"))
+              text="\n".join(p.get_text() for p in pdf)
+              bad=[]
+              for i,p in enumerate(pdf):
+                  for block in p.get_text("dict")["blocks"]:
+                      for line in block.get("lines",[]):
+                          for span in line["spans"]:
+                              x0,y0,x1,y1=span["bbox"]
+                              if x0 < -1 or y0 < -1 or x1 > p.rect.width+1 or y1 > p.rect.height+1:
+                                  bad.append({"page":i+1,"text":span["text"],"bbox":list(span["bbox"])})
+              assert not bad,(stem,bad)
+              assert "nan" not in text.lower().split(),stem
+              doc=Document(root/(stem+".docx"))
+              assert len(doc.tables)>=8,(stem,len(doc.tables))
+              if "Report_Revised" in stem:
+                  for key in ["9.49%","7.21%","39.49","77.07"]:
+                      assert key in text,(stem,key)
+              report[stem]={"pdf_pages":len(pdf),"word_tables":len(doc.tables),
+                           "pdf_characters":len(text),"out_of_page_spans":len(bad),
+                           "key_text_checks":"passed"}
+              pages=[0,min(3,len(pdf)-1)] if "Report_Revised" in stem else [0]
+              for i in pages:
+                  pdf[i].get_pixmap(matrix=fitz.Matrix(1.2,1.2)).save(out/(stem+"_page"+str(i+1)+".png"))
+          (out/"review.json").write_text(json.dumps(report,indent=2))
+          print(json.dumps(report,indent=2))
+          PY
+      - name: Preserve review evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add validation/document_review
+          git commit -m "Verify report pages and retain document review evidence"
+          git push origin HEAD:analysis/remaining-checks-2026-11-27
